@@ -10,6 +10,14 @@ const Template = (args) => <FormGenerator {...args} />;
 
 export const Default = Template.bind({});
 
-// Default.args = {
-//   onFileSelected: (data) => console.log("I am the content bro", data),
-// };
+Default.args = {
+  title: "This is the formo",
+  subtitle: "So please enter your things, thank you",
+  fields: [
+    {
+      fieldType: "RADIO",
+      label: "Enter they ieys",
+      placeholder: "Textbox you know",
+    },
+  ],
+};
