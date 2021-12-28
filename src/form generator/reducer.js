@@ -4,6 +4,8 @@ export const ACTIONS = {
 
 export const FieldTypes = {
   RADIO: "RADIO",
+  RADIOGROUP: "RADIOGROUP",
+  CHECKBOXGROUP: "CHECKBOXGROUP",
   CHECKBOX: "CHECKBOX",
   INPUT: "TEXTBOX",
   TEXTAREA: "TEXTAREA",
@@ -13,7 +15,7 @@ export const FieldTypes = {
 export const formStateReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE:
-      return { ...state, ...payload };
+      return { ...state, ...action.payload };
     default:
       return state;
   }

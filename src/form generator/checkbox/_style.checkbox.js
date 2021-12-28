@@ -5,8 +5,8 @@ import {
   THEME_HOVER_COLOR,
 } from "../shared/_shared.styles";
 const emptyBox = css`
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   border: solid 4px ${THEME_COLOR};
   margin: 4px;
   border-radius: 2px;
@@ -54,6 +54,7 @@ const defaultContainer = css`
 `;
 
 const hoveringCheckMarkCss = css`
+  font-size: 12px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);

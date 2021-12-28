@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { DEFAULT, elevate, FULL, THEME_COLOR } from "../shared/_shared.styles";
+import { DEFAULT, elevate, FULL, LEGACY, THEME_COLOR } from "../shared/_shared.styles";
 import { cx } from "@emotion/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -203,6 +203,7 @@ export default class Dropdown extends Component {
 
   render() {
     const { containerClassName, containerStyle, type } = this.props;
+    
     return (
       <div style={containerStyle} className={containerClassName}>
         <div
@@ -220,10 +221,15 @@ export default class Dropdown extends Component {
   }
 }
 
+Dropdown.Types = {
+  DEFAULT: DEFAULT,
+  FULL: FULL,
+  LEGACY: LEGACY,
+};
 Dropdown.propTypes = {
   /** Placeholder text until an item is selected in dropdown */
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
-  /** Determines which of the two dropdown designs shoudl be used */
+  /** Determines which of the two dropdown designs should be used "default" or "full" */
   type: PropTypes.string,
   /** Content to be listed as dropdown */
   data: PropTypes.arrayOf(

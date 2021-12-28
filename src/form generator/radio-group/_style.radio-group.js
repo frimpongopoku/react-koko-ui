@@ -5,9 +5,9 @@ import {
   THEME_HOVER_COLOR,
 } from "../shared/_shared.styles";
 const emptyCircle = css`
-  height: 25px;
-  width: 25px;
-  border: solid 4px ${THEME_COLOR};
+  height: 15px;
+  width: 15px;
+  border: solid 2px ${THEME_COLOR};
   margin: 4px;
   border-radius: 100%;
 `;

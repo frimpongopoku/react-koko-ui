@@ -6,6 +6,7 @@ export const THEME_ACTIVE_COLOR = "#531a6b";
 export const makeClass = (cssString) => cx(css(cssString));
 export const DEFAULT = "default";
 export const FULL = "full";
+export const LEGACY  ="legacy"
 export const putElementInline = css`
   display: inline-block;
 `;

@@ -4,15 +4,13 @@ import { cx } from "@emotion/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { checkBoxCss } from "./_style.checkbox";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import {
-  commonStylePropValues,
-} from "../shared/_shared.proptypes";
+import { commonStylePropValues } from "../shared/_shared.proptypes";
 
 export default class CheckBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      is_checked: false,
+      is_checked: undefined,
     };
     this.onCheckBoxSelected = this.onCheckBoxSelected.bind(this);
   }
@@ -27,9 +25,8 @@ export default class CheckBox extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.checked !== state.is_checked)
+    if (state.is_checked === undefined && props.checked)
       return { is_checked: props.checked };
-
     return null;
   }
   render() {
