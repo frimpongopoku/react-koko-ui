@@ -13,10 +13,12 @@ export const FieldTypes = {
 };
 
 export const formStateReducer = (state, action) => {
+  console.log("this is the action bro", action);
   switch (action.type) {
     case ACTIONS.UPDATE:
       return { ...state, ...action.payload };
     default:
+      console.log(" am talking to the default");
       return state;
   }
 };

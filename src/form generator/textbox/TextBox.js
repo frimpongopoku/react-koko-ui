@@ -69,6 +69,8 @@ export const InputBoxComponent = (props) => {
     onChange,
     containerClassName,
     containerStyle,
+    value,
+    defaultValue,
   } = props;
   return (
     <div style={containerStyle} className={containerClassName}>
@@ -77,6 +79,7 @@ export const InputBoxComponent = (props) => {
         style={style}
         className={`${cx(input)} ${className}`}
         placeholder={placeholder}
+        value={value || defaultValue}
         {..._generics}
       />
     </div>
@@ -92,6 +95,8 @@ export const TextAreaComponent = (props) => {
     onChange,
     containerStyle,
     containerClassName,
+    value,
+    defaultValue,
   } = props;
   return (
     <div style={containerStyle} className={containerClassName}>
@@ -101,6 +106,7 @@ export const TextAreaComponent = (props) => {
         onChange={onChange}
         placeholder={placeholder}
         rows={7}
+        value={value || defaultValue}
         {..._generics}
       ></textarea>
     </div>

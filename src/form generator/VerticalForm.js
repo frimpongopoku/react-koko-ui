@@ -14,8 +14,16 @@ const styles = {
   content: {},
 };
 export default function VerticalForm(props) {
-  const { className, style, fields, setState,state, title, subtitle, onSubmit } =
-    props;
+  const {
+    className,
+    style,
+    fields,
+    setState,
+    state,
+    title,
+    subtitle,
+    onSubmit,
+  } = props;
 
   const renderLabel = (field) => {
     if (field.label)
@@ -26,23 +34,58 @@ export default function VerticalForm(props) {
       );
   };
 
+  const handleOnChange = (field, value) => {
+    setState({ [field.name || field.dbName]: value });
+  };
+
+  const getStateValue = (field) => {
+    return (state || {})[field.name || field.value];
+  };
+
   const renderInput = (field, isTextarea) => {
-    const obj = { ...field };
+    const value = getStateValue(field);
+    const obj = {
+      ...field,
+      value,
+      onChange: (e) => handleOnChange(field, e.target.value),
+    };
     if (isTextarea) return <Textbox {...obj} textarea />;
     return <Textbox {...obj} />;
   };
 
   const renderCheckbox = (field, isGroup) => {
-    if (isGroup) return <CheckboxGroup {...field} />;
+    const value = getStateValue(field);
+    if (isGroup)
+      return (
+        <CheckboxGroup
+          {...field}
+          defaultValue={value}
+          onItemSelected={(data) => handleOnChange(field, data)}
+        />
+      );
     return <Checkbox {...field} />;
   };
 
   const renderRadios = (field) => {
-    return <RadioGroup {...field} />;
+    const value = getStateValue(field);
+    return (
+      <RadioGroup
+        {...field}
+        defaultValue={value}
+        onItemSelected={(data) => handleOnChange(field, data)}
+      />
+    );
   };
 
   const renderDropdown = (field) => {
-    return <Dropdown {...field} />;
+    const value = getStateValue(field);
+    return (
+      <Dropdown
+        {...field}
+        defaultValue={value}
+        onItemSelected={(data) => handleOnChange(field, data)}
+      />
+    );
   };
 
   const getComponentWithType = (field) => {
@@ -86,7 +129,7 @@ export default function VerticalForm(props) {
       </div>
 
       <div style={{ display: "flex", width: "100%" }}>
-        <Button style={{ marginLeft: "auto" }} onSubmit={onSubmit}>
+        <Button style={{ marginLeft: "auto" }} onClick={onSubmit}>
           Here we go again
         </Button>
       </div>

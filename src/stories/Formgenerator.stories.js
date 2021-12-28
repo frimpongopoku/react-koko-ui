@@ -11,6 +11,7 @@ const Template = (args) => <FormGenerator {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
+  onSubmit: (data) => console.log("I am the content bruh", data),
   title: "This is the formo",
   subtitle: "So please enter your things, thank you",
   fields: [
