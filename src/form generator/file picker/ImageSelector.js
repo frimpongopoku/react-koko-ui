@@ -7,7 +7,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { base64StringtoFile } from "../shared/utils/useful";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import Button from "../button/Button";
+import Button from "./../button/Button";
 import { JPEG, JPG, PNG } from "./ImageConstants";
 
 const { container, iconCss, previewImageCss } = selectorCss;

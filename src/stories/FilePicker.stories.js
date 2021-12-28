@@ -1,5 +1,5 @@
 import React from "react";
-import FilePicker from "./../file picker/ImageSelector";
+import FilePicker from "./../form generator/file picker/ImageSelector";
 
 export default {
   component: FilePicker,
