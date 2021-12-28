@@ -1,8 +1,9 @@
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 export const THEME_COLOR = "purple";
 export const THEME_HOVER_COLOR = "#9d41c3";
 export const THEME_ACTIVE_COLOR = "#531a6b";
 
+export const makeClass = (cssString) => cx(css(cssString));
 export const DEFAULT = "default";
 export const FULL = "full";
 export const putElementInline = css`
