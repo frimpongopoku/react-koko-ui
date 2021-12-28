@@ -6,6 +6,7 @@ import Checkbox from "./checkbox/CheckBox";
 import CheckboxGroup from "./checkbox/CheckBoxGroup";
 import RadioGroup from "./radio-group/RadioGroup";
 import Dropdown from "./dropdown/Dropdown";
+import Button from "./button/Button";
 const styles = {
   container: {
     padding: 10,
@@ -13,7 +14,8 @@ const styles = {
   content: {},
 };
 export default function VerticalForm(props) {
-  const { className, style, fields, setState, title, subtitle } = props;
+  const { className, style, fields, setState,state, title, subtitle, onSubmit } =
+    props;
 
   const renderLabel = (field) => {
     if (field.label)
@@ -60,7 +62,7 @@ export default function VerticalForm(props) {
       case FieldTypes.DROPDOWN:
         return renderDropdown(field);
       default:
-        <small>Item is not availablbe in form...</small>;
+        <small>Item is not available in form...</small>;
     }
   };
 
@@ -81,6 +83,12 @@ export default function VerticalForm(props) {
             </div>
           );
         })}
+      </div>
+
+      <div style={{ display: "flex", width: "100%" }}>
+        <Button style={{ marginLeft: "auto" }} onSubmit={onSubmit}>
+          Here we go again
+        </Button>
       </div>
     </div>
   );

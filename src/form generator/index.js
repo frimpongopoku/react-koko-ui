@@ -1,12 +1,12 @@
 import React, { useReducer } from "react";
-// import PropTypes from "prop-types";
 import { formStateReducer } from "./reducer";
 import MultiStepForm from "./MultiStepForm";
 import VerticalForm from "./VerticalForm";
+import Notification from "./notification/Notification";
 
 const initialFormState = {};
 function FormGenerator(props) {
-  const { multiStep = false, onSubmit } = props;
+  const { multiStep = false, onSubmit, notification } = props;
   const [state, dispatch] = useReducer(formStateReducer, initialFormState);
   const setState = (type, payload) => {
     dispatch(state, { type, payload });
@@ -18,22 +18,20 @@ function FormGenerator(props) {
     onSubmit(state);
   };
 
-  if (multiStep)
-    return (
-      <MultiStepForm
+  var Form;
+  if (multiStep) Form = MultiStepForm;
+  else Form = VerticalForm;
+  return (
+    <>
+      <Form
         state={state}
         setState={setState}
         {...props}
         onSubmit={handleOnSubmit}
       />
-    );
-  return (
-    <VerticalForm
-      state={state}
-      setState={setState}
-      {...props}
-      onSubmit={handleOnSubmit}
-    />
+
+      <Notification />
+    </>
   );
 }
 

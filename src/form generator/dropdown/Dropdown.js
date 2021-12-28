@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { DEFAULT, elevate, FULL, LEGACY, THEME_COLOR } from "../shared/_shared.styles";
+import {
+  DEFAULT,
+  elevate,
+  FULL,
+  LEGACY,
+  THEME_COLOR,
+} from "../shared/_shared.styles";
 import { cx } from "@emotion/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -184,8 +190,7 @@ export default class Dropdown extends Component {
           {this.ejectChildren()}
         </div>
       );
-
-    if (type === FULL && isOpen)
+    else if (type === FULL && isOpen)
       return (
         <div
           style={{
@@ -199,11 +204,14 @@ export default class Dropdown extends Component {
           {this.ejectChildren()}
         </div>
       );
+    // legacy mode will be completed soon
+    // else if (type === LEGACY && isOpen)
+    //   return <p>I am the legacy dropdown bruh dont play with me bitches</p>;
   }
 
   render() {
     const { containerClassName, containerStyle, type } = this.props;
-    
+
     return (
       <div style={containerStyle} className={containerClassName}>
         <div
