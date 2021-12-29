@@ -12,7 +12,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   onSubmit: (data) => console.log("FORM ON SUBMIT: ", data),
-  title: "This is the formo",
+  title: "This is the form",
   subtitle: "So please enter your things, thank you",
   fields: [
     {
