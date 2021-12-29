@@ -1,5 +1,9 @@
 import { css } from "@emotion/css";
-import { THEME_ACTIVE_COLOR, THEME_HOVER_COLOR } from "../shared/_shared.styles";
+import {
+  THEME_ACTIVE_COLOR,
+  THEME_COLOR,
+  THEME_HOVER_COLOR,
+} from "../shared/_shared.styles";
 
 export const remove_defaults = css`
   padding: 10px 15px;
@@ -15,7 +19,7 @@ export const remove_defaults = css`
 
 export const default_btn = css`
   padding: 10px 20px;
-  background: purple;
+  background: ${THEME_COLOR};
   color: white;
   border-radius: 4px;
   &:hover {

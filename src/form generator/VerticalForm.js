@@ -8,6 +8,7 @@ import RadioGroup from "./radio-group/RadioGroup";
 import Dropdown from "./dropdown/Dropdown";
 import Button from "./button/Button";
 import FileSelector from "./file picker/ImageSelector";
+import AutoComplete from "./autocomplete/AutoComplete";
 const styles = {
   container: {
     padding: 10,
@@ -26,6 +27,7 @@ export default function VerticalForm(props) {
     subtitle,
     onSubmit,
     setFormState,
+    actionText,
   } = props;
 
   const renderLabel = (field) => {
@@ -102,7 +104,24 @@ export default function VerticalForm(props) {
 
   const renderMediaSelector = (field) => {
     const value = getStateValue(field);
-    return <FileSelector {...field} defaultValue={value} />;
+    return (
+      <FileSelector
+        {...field}
+        defaultValue={value}
+        onFileSelected={(data) => handleOnChange(field, data)}
+      />
+    );
+  };
+
+  const renderAutoComplete = (field) => {
+    const value = getStateValue(field);
+    return (
+      <AutoComplete
+        {...field}
+        value={value}
+        onItemSelected={(items) => handleOnChange(field, items)}
+      />
+    );
   };
 
   const getComponentWithType = (field) => {
@@ -121,8 +140,10 @@ export default function VerticalForm(props) {
         return renderRadios(field);
       case FieldTypes.DROPDOWN:
         return renderDropdown(field);
-      case FieldTypes.MEDIA_UPLOAD:
+      case FieldTypes.MEDIAUPLOAD:
         return renderMediaSelector(field);
+      case FieldTypes.AUTOCOMPLETE:
+        return renderAutoComplete(field);
       default:
         <small>Item is not available in form...</small>;
     }
@@ -149,7 +170,7 @@ export default function VerticalForm(props) {
 
       <div style={{ display: "flex", width: "100%" }}>
         <Button style={{ marginLeft: "auto" }} onClick={onSubmit}>
-          Here we go again
+          {actionText}
         </Button>
       </div>
     </div>

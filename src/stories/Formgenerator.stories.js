@@ -26,6 +26,13 @@ Default.args = {
       // multiple: true,
     },
     {
+      fieldType: "AUTOCOMPLETE",
+      label: "Select your pet name",
+      placeholder: "Enter pet name...",
+      defaultValue: ["police"],
+      name: "auto_complete",
+    },
+    {
       fieldType: "CHECKBOX",
       label: "I am the checkbox buda",
       placeholder: "Textbox you know",

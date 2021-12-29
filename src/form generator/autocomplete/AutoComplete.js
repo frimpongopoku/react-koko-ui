@@ -89,7 +89,7 @@ function AutoComplete(props) {
     });
   };
 
-  useEffect(() => setSelected(defaultValue || value), [defaultValue, value]);
+  useEffect(() => setSelected(defaultValue || value), []);
 
   return (
     <div>

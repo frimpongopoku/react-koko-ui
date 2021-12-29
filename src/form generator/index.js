@@ -12,6 +12,7 @@ function FormGenerator(props) {
   const setState = (payload = {}) => {
     dispatch({ type: ACTIONS.UPDATE, payload });
   };
+
   const setFormState = (payload = {}) => {
     dispatch({ type: ACTIONS.ADD_TO_FORM, payload });
   };
@@ -36,7 +37,6 @@ function FormGenerator(props) {
         true,
         `${field.name || field.dbName} is required but no value is provided`,
       ];
-
     return [false, null];
   };
 
@@ -95,5 +95,9 @@ function FormGenerator(props) {
 }
 
 FormGenerator.propTypes = {};
+
+FormGenerator.defaultProps = {
+  actionText: "Submit",
+};
 
 export default FormGenerator;

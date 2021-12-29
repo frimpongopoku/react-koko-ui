@@ -18,8 +18,8 @@ export default class CheckBoxGroup extends Component {
   handleOnItemSelected(value) {
     const { onItemSelected } = this.props;
     const { selected_items } = this.state;
-    const notInIt = selected_items.filter((itm) => itm !== value);
-    const itemExists = selected_items.filter((itm) => itm === value)[0];
+    const notInIt = selected_items?.filter((itm) => itm !== value) || [];
+    const itemExists = selected_items?.filter((itm) => itm === value)[0];
     if (!itemExists) {
       var together = [...notInIt, value];
       this.setState({ selected_items: together });
@@ -54,7 +54,7 @@ export default class CheckBoxGroup extends Component {
   itemIsSelected(value) {
     const { selected_items } = this.state;
 
-    const k = selected_items.filter((itm) => itm === value)[0];
+    const k = selected_items?.filter((itm) => itm === value)[0];
     return value === k;
   }
 

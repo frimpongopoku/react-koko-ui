@@ -146,7 +146,9 @@ export default class ImageSlector extends Component {
           <span onClick={this.searchForImage}>
             <FontAwesomeIcon icon={faUpload} className={cx(iconCss)} />
           </span>
-          <p style={{}}>Select An Image To Upload</p>
+          <p style={{}}>
+            {this.props.placeholder || "Select An Image To Upload"}
+          </p>
         </center>
       </>
     );
@@ -447,6 +449,8 @@ ImageSlector.propTypes = {
   maxHeight: PropTypes.number,
   /** Provides ( data ,reset ) that corresponds to latest changes based on selected image, cropping, and compression whenever any happen. A reset function
    * is added to enable outside components to reset the ImageSelector
+   * @param data 
+   * @param reset
    */
   onFileSelected: PropTypes.func.isRequired,
 
