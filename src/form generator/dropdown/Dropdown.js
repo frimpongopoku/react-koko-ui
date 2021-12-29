@@ -101,6 +101,7 @@ export default class Dropdown extends Component {
     }
     return selected_value || this.props.placeholder;
   }
+  
   showThatItemIsSelected(value) {
     var { selected_value } = this.state;
     if (this.props.multiple) {

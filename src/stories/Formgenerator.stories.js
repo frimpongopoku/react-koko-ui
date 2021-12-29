@@ -11,7 +11,7 @@ const Template = (args) => <FormGenerator {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  onSubmit: (data) => console.log("I am the content bruh", data),
+  onSubmit: (data) => console.log("FORM ON SUBMIT: ", data),
   title: "This is the formo",
   subtitle: "So please enter your things, thank you",
   fields: [
@@ -19,7 +19,8 @@ Default.args = {
       fieldType: "DROPDOWN",
       label: "Choose your dropdown item",
       placeholder: "Anything from the dropdown",
-      values: ["boy", "girl", "Shoe", "Grapes"],
+      data: ["boy", "girl", "Shoe", "Grapes"],
+      defaultValue: ["girl"],
       name: "dropdown",
       type: "full",
       // multiple: true,
@@ -35,7 +36,7 @@ Default.args = {
       fieldType: "RADIOGROUP",
       label: "What is your favorite animal?",
       placeholder: "Enter animal...",
-
+      defaultValue: "Orange",
       name: "radio",
     },
 
@@ -43,6 +44,7 @@ Default.args = {
       fieldType: "TEXTBOX",
       label: "What is your bestfriend's name?",
       placeholder: "Textbox you know",
+      defaultValue: "You gotta chat shit here bro",
       name: "input",
     },
     {
@@ -50,6 +52,7 @@ Default.args = {
       label: "Choose your checkbox group item",
       placeholder: "Textbox you know",
       data: ["boy", "girl", "Shoe", "Grapes"],
+      defaultValue: ["girl", "grapes"],
       checked: true,
       name: "checkbox_group",
     },
@@ -58,6 +61,7 @@ Default.args = {
       label: "Write something small about yourself bro",
       placeholder: "Tell us about yourself",
       checked: true,
+      defaultValue: "This is a whole essay about yourself bruh",
       name: "textarea",
     },
   ],

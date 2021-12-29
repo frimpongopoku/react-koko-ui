@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FieldTypes } from "./reducer";
 import { makeClass } from "./shared/_shared.styles";
 import Textbox from "./textbox/TextBox";
@@ -7,12 +7,14 @@ import CheckboxGroup from "./checkbox/CheckBoxGroup";
 import RadioGroup from "./radio-group/RadioGroup";
 import Dropdown from "./dropdown/Dropdown";
 import Button from "./button/Button";
+
 const styles = {
   container: {
     padding: 10,
   },
   content: {},
 };
+
 export default function VerticalForm(props) {
   const {
     className,
@@ -35,11 +37,11 @@ export default function VerticalForm(props) {
   };
 
   const handleOnChange = (field, value) => {
-    setState({ [field.name || field.dbName]: value });
+    setState({ [field.dbName || field.name]: value });
   };
 
   const getStateValue = (field) => {
-    return (state || {})[field.name || field.value];
+    return (state || {})[field.dbName || field.name];
   };
 
   const renderInput = (field, isTextarea) => {
@@ -108,6 +110,21 @@ export default function VerticalForm(props) {
         <small>Item is not available in form...</small>;
     }
   };
+
+  const setDefaults = () => {
+    var obj = {}; //make a copy of fields bruh
+
+    fields.forEach((field) => {
+      obj = {
+        ...obj,
+        [field.dbName || field.name]: field.value || field.defaultValue || null,
+      };
+    });
+
+    setState(obj);
+  };
+
+  useEffect(() => setDefaults(), [fields]);
 
   return (
     <div

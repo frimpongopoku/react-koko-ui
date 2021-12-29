@@ -19,7 +19,7 @@ export const dropdownCSS = {
 
   fullWidthTogglerCss: css`
     width: 100%;
-    padding: 15px 20px;
+    padding: 12px 20px;
     border: solid 2px ${THEME_COLOR};
     border-radius: 4px;
     display: flex;

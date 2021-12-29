@@ -17,7 +17,7 @@ export default class RadioGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_item: null,
+      selected_item: undefined,
     };
     this.handleOnItemSelected = this.handleOnItemSelected.bind(this);
   }
@@ -33,9 +33,16 @@ export default class RadioGroup extends Component {
     this.setState({ selected_item: value });
     if (onItemSelected) onItemSelected(value);
   }
-  componentDidMount() {
-    const { defaultValue } = this.props;
-    if (defaultValue) this.setState({ selected_item: defaultValue });
+  // componentDidMount() {
+  //   const { defaultValue } = this.props;
+  //   if (defaultValue) this.setState({ selected_item: defaultValue });
+  // }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.selected_item === undefined && props.defaultValue) {
+      return { selected_item: props.defaultValue };
+    }
+    return null;
   }
 
   itemIsChecked(value) {
