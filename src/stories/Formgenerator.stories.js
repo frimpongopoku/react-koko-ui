@@ -38,7 +38,15 @@ Default.args = {
       placeholder: "Enter animal...",
       defaultValue: "Orange",
       name: "radio",
-      required: true,
+      // required: true,
+    },
+    {
+      fieldType: "MEDIA_UPLOAD",
+      label: "Upload an image for you BS",
+      placeholder: "Enter animal...",
+      defaultValue: "https://i.pravatar.cc/200",
+      name: "image",
+      // required: true,
     },
 
     {

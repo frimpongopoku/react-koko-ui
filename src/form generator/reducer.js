@@ -11,6 +11,7 @@ export const FieldTypes = {
   INPUT: "TEXTBOX",
   TEXTAREA: "TEXTAREA",
   DROPDOWN: "DROPDOWN",
+  MEDIA_UPLOAD: "MEDIA_UPLOAD",
 };
 
 export const formStateReducer = (state, action) => {

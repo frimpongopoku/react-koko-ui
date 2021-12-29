@@ -7,7 +7,7 @@ import CheckboxGroup from "./checkbox/CheckBoxGroup";
 import RadioGroup from "./radio-group/RadioGroup";
 import Dropdown from "./dropdown/Dropdown";
 import Button from "./button/Button";
-
+import FileSelector from "./file picker/ImageSelector";
 const styles = {
   container: {
     padding: 10,
@@ -100,6 +100,11 @@ export default function VerticalForm(props) {
     );
   };
 
+  const renderMediaSelector = (field) => {
+    const value = getStateValue(field);
+    return <FileSelector {...field} defaultValue={value} />;
+  };
+
   const getComponentWithType = (field) => {
     switch (field.fieldType) {
       case FieldTypes.INPUT:
@@ -116,6 +121,8 @@ export default function VerticalForm(props) {
         return renderRadios(field);
       case FieldTypes.DROPDOWN:
         return renderDropdown(field);
+      case FieldTypes.MEDIA_UPLOAD:
+        return renderMediaSelector(field);
       default:
         <small>Item is not available in form...</small>;
     }
