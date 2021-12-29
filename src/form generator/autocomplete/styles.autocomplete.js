@@ -7,7 +7,8 @@ import {
 export const Stylesheet = {
   input: {
     boxSizing: "border-box",
-    border: "solid 1px " + THEME_COLOR,
+    border: "solid 2px " + THEME_COLOR,
+    borderRadius: 3,
     fontSize: 14,
     width: "100%",
     "&:focus": { outline: 0 },
@@ -56,7 +57,7 @@ export const Stylesheet = {
     color: THEME_COLOR,
     padding: "10px 23px",
     display: "inline-block",
-    margin: "0px 4px",
+    margin: "3px 4px",
     borderRadius: 55,
     cursor: "pointer",
     "& span": {

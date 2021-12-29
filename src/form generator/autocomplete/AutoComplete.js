@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { elevate, makeClass } from "../shared/_shared.styles";
 import { Stylesheet } from "./styles.autocomplete";
@@ -17,6 +17,8 @@ function AutoComplete(props) {
     valueExtractor,
     onItemSelected,
     multiple,
+    defaultValue,
+    value,
   } = props;
 
   const [text, setText] = useState("");
@@ -31,8 +33,12 @@ function AutoComplete(props) {
   const handleSelection = (item) => {
     const value = getValue(item);
     if (!multiple) {
-      setSelected([item]);
-      transfer([item], item);
+      const old = getValue(selected[0]);
+      var transferData = [];
+      if (value === old) transferData = [];
+      else transferData = [item];
+      setSelected(transferData);
+      transfer(transferData, item);
       return;
     }
 
@@ -48,11 +54,13 @@ function AutoComplete(props) {
   };
 
   const getLabel = (item) => {
+    if (!item) return "";
     if (labelExtractor) return labelExtractor(item);
     return item?.toString();
   };
 
   const getValue = (item) => {
+    if (!item) return "";
     if (valueExtractor) return valueExtractor(item);
     return item?.toString();
   };
@@ -80,6 +88,8 @@ function AutoComplete(props) {
       );
     });
   };
+
+  useEffect(() => setSelected(defaultValue || value), [defaultValue, value]);
 
   return (
     <div>
@@ -167,10 +177,21 @@ AutoComplete.propTypes = {
    * Determines if multiple items should be selected
    */
   multiple: PropTypes.bool,
+  /**
+   * Default value to preselect items
+   */
+  defaultValue: PropTypes.arrayOf(
+    PropTypes.oneOf([PropTypes.string, PropTypes.object])
+  ),
+  value: PropTypes.arrayOf(
+    PropTypes.oneOf([PropTypes.string, PropTypes.object])
+  ),
 };
 AutoComplete.defaultProps = {
   placeholder: "Start typing here... ",
   data: ["Sheep", "goat", "police", "fanmilk"],
-  multiple: false,
+  multiple: true,
+  defaultValue: [],
+  value: [],
 };
 export default AutoComplete;

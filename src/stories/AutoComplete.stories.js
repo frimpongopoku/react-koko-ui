@@ -8,3 +8,7 @@ export default {
 const Template = (args) => <AutoComplete {...args} />;
 
 export const Default = Template.bind({});
+
+Default.args = {
+  defaultValue: ["police", "fanmilk"],
+};
