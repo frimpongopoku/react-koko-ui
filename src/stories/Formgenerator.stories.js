@@ -38,6 +38,7 @@ Default.args = {
       placeholder: "Enter animal...",
       defaultValue: "Orange",
       name: "radio",
+      required: true,
     },
 
     {

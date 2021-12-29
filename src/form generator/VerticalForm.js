@@ -25,23 +25,33 @@ export default function VerticalForm(props) {
     title,
     subtitle,
     onSubmit,
+    setFormState,
   } = props;
 
   const renderLabel = (field) => {
+    const error = getError(field);
     if (field.label)
       return (
         <div style={{ marginTop: 6, marginBottom: 6 }}>
           <small>{field.label}</small>
+          <br />
+          {error && (
+            <small style={{ color: "red", fontWeight: "bold" }}>{error}</small>
+          )}
         </div>
       );
   };
 
   const handleOnChange = (field, value) => {
-    setState({ [field.dbName || field.name]: value });
+    setFormState({ [field.dbName || field.name]: value });
   };
 
   const getStateValue = (field) => {
-    return (state || {})[field.dbName || field.name];
+    return (state?.form || {})[field.dbName || field.name];
+  };
+
+  const getError = (field) => {
+    return (state?.errors || {})[field.name || field.dbName] || "";
   };
 
   const renderInput = (field, isTextarea) => {
@@ -110,21 +120,6 @@ export default function VerticalForm(props) {
         <small>Item is not available in form...</small>;
     }
   };
-
-  const setDefaults = () => {
-    var obj = {}; //make a copy of fields bruh
-
-    fields.forEach((field) => {
-      obj = {
-        ...obj,
-        [field.dbName || field.name]: field.value || field.defaultValue || null,
-      };
-    });
-
-    setState(obj);
-  };
-
-  useEffect(() => setDefaults(), [fields]);
 
   return (
     <div
