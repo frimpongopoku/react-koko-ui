@@ -25,12 +25,12 @@ const styles = {
     },
   },
 };
-function Notification({ msg, message, type }) {
+function Notification({ msg, message, type, close }) {
   var theme;
   if (type === "good") theme = styles.greenNotification;
   else theme = styles.redNotification;
   return (
-    <div className={makeClass(theme)}>
+    <div className={makeClass(theme)} onClick={() => close && close()}>
       <p>{msg || message}</p>
     </div>
   );

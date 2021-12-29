@@ -66,6 +66,11 @@ function FormGenerator(props) {
 
   useEffect(() => setDefaults(), [fields]);
 
+  useEffect(
+    () => setState({ notification: notification || null }),
+    [notification]
+  );
+
   var Form;
   if (multiStep) Form = MultiStepForm;
   else Form = VerticalForm;
@@ -79,7 +84,12 @@ function FormGenerator(props) {
         onSubmit={handleOnSubmit}
       />
 
-      <Notification />
+      {notification && (
+        <Notification
+          {...(notification || {})}
+          close={() => setState({ notification: null })}
+        />
+      )}
     </>
   );
 }
