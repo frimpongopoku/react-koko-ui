@@ -4,7 +4,7 @@ import MultiStepForm from "./MultiStepForm";
 import VerticalForm from "./VerticalForm";
 import Notification from "./notification/Notification";
 
-const initialFormState = { form: {} };
+const initialFormState = { form: {}, resetors: [] };
 function FormGenerator(props) {
   const { multiStep = false, onSubmit, notification, fields } = props;
   const [state, dispatch] = useReducer(formStateReducer, initialFormState);
@@ -17,6 +17,9 @@ function FormGenerator(props) {
     dispatch({ type: ACTIONS.ADD_TO_FORM, payload });
   };
 
+  const setResetor = (payload) => {
+    dispatch({ type: ACTIONS.ADD_TO_RESETORS, payload });
+  };
   const setDefaults = () => {
     var obj = {};
     fields.forEach((field) => {
@@ -58,11 +61,20 @@ function FormGenerator(props) {
     if (!onSubmit)
       return console.log("You have not provided a submit function...");
 
+    return resetForm();
+
     setState({ errors: null });
     const [failed, info] = requirementsFailed();
     if (failed) return setState({ errors: info });
-    onSubmit(state);
+    onSubmit(state, resetForm);
   };
+
+  const resetForm = () => {
+    setState({ form: {} });
+    if (state.resetors) state.resetors.forEach((reset) => reset());
+    console.log("I  just run shit boss");
+  };
+  console.log("I am teh state bro", state);
 
   useEffect(() => setDefaults(), [fields]);
 
@@ -80,6 +92,7 @@ function FormGenerator(props) {
         state={state}
         setState={setState}
         setFormState={setFormState}
+        setResetor={setResetor}
         {...props}
         onSubmit={handleOnSubmit}
       />

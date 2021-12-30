@@ -28,6 +28,7 @@ export default function VerticalForm(props) {
     onSubmit,
     setFormState,
     actionText,
+    setResetor,
   } = props;
 
   const renderLabel = (field) => {
@@ -108,7 +109,10 @@ export default function VerticalForm(props) {
       <FileSelector
         {...field}
         defaultValue={value}
-        onFileSelected={(data) => handleOnChange(field, data)}
+        onFileSelected={(data, reset) => {
+          handleOnChange(field, data);
+          setResetor(reset);
+        }}
       />
     );
   };
@@ -120,6 +124,7 @@ export default function VerticalForm(props) {
         {...field}
         value={value}
         onItemSelected={(items) => handleOnChange(field, items)}
+        onMount={(reset) => setResetor(reset)}
       />
     );
   };

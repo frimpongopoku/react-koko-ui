@@ -19,6 +19,7 @@ function AutoComplete(props) {
     multiple,
     defaultValue,
     value,
+    onMount,
   } = props;
 
   const [text, setText] = useState("");
@@ -89,7 +90,14 @@ function AutoComplete(props) {
     });
   };
 
+  const resetFunction = () => {
+    setSelected([]);
+  };
   useEffect(() => setSelected(defaultValue || value), []);
+
+  useEffect(() => {
+    if (onMount) onMount(resetFunction);
+  }, []);
 
   return (
     <div>
@@ -109,7 +117,7 @@ function AutoComplete(props) {
           onClick={() => setShowDrop(false)}
         ></div>
       )}
-      <div style={{ position: "relative", zIndex: 10 }}>
+      <div style={{ position: "relative", zIndex: 2 }}>
         <input
           onClick={() => setShowDrop(true)}
           className={`${makeClass(Stylesheet.input)} ${className || ""}`}
@@ -186,6 +194,12 @@ AutoComplete.propTypes = {
   value: PropTypes.arrayOf(
     PropTypes.oneOf([PropTypes.string, PropTypes.object])
   ),
+
+  /**
+   * Exports a function that resets the component
+   * @param resetFunction
+   */
+  onMount: PropTypes.func,
 };
 AutoComplete.defaultProps = {
   placeholder: "Start typing here... ",

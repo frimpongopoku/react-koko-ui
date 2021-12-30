@@ -22,7 +22,7 @@ export const Stylesheet = {
     height: "100vh",
     background: "white",
     opacity: 0.1,
-    zIndex: 5,
+    zIndex: 2,
     cursor: "pointer",
   },
   dropContainer: {

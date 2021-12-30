@@ -1,6 +1,7 @@
 export const ACTIONS = {
   UPDATE: "UPDATE",
   ADD_TO_FORM: "ADD_TO_FORM",
+  ADD_TO_RESETORS: "ADD_TO_RESTORS",
 };
 
 export const FieldTypes = {
@@ -20,7 +21,9 @@ export const formStateReducer = (state, action) => {
     case ACTIONS.UPDATE:
       return { ...state, ...action.payload };
     case ACTIONS.ADD_TO_FORM:
-      return { form: { ...state.form, ...action.payload } };
+      return { ...state, form: { ...state.form, ...action.payload } };
+    case ACTIONS.ADD_TO_RESETORS:
+      return { ...state, resetors: [...state.resetors, action.payload] };
     default:
       console.log(" am talking to the default");
       return state;
