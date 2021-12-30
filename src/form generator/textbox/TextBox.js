@@ -79,7 +79,7 @@ export const InputBoxComponent = (props) => {
         style={style}
         className={`${cx(input)} ${className}`}
         placeholder={placeholder}
-        value={value || defaultValue}
+        value={value || defaultValue || ""}
         {..._generics}
       />
     </div>
@@ -106,7 +106,7 @@ export const TextAreaComponent = (props) => {
         onChange={onChange}
         placeholder={placeholder}
         rows={7}
-        value={value || defaultValue}
+        value={value || defaultValue || ""}
         {..._generics}
       ></textarea>
     </div>

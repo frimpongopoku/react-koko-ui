@@ -64,6 +64,7 @@ export default function VerticalForm(props) {
       value,
       onChange: (e) => handleOnChange(field, e.target.value),
     };
+
     if (isTextarea) return <Textbox {...obj} textarea />;
     return <Textbox {...obj} />;
   };
@@ -88,6 +89,7 @@ export default function VerticalForm(props) {
         {...field}
         defaultValue={value}
         onItemSelected={(data) => handleOnChange(field, data)}
+        onMount={(reset) => setResetor(reset)}
       />
     );
   };
@@ -99,6 +101,7 @@ export default function VerticalForm(props) {
         {...field}
         defaultValue={value}
         onItemSelected={(data) => handleOnChange(field, data)}
+        onMount={(reset) => setResetor(reset)}
       />
     );
   };

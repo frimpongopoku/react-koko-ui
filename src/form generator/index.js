@@ -60,7 +60,7 @@ function FormGenerator(props) {
   const handleOnSubmit = () => {
     if (!onSubmit)
       return console.log("You have not provided a submit function...");
-
+    console.log("HANDLE THE ONSUBMIT ", state);
     return resetForm();
 
     setState({ errors: null });
@@ -72,9 +72,7 @@ function FormGenerator(props) {
   const resetForm = () => {
     setState({ form: {} });
     if (state.resetors) state.resetors.forEach((reset) => reset());
-    console.log("I  just run shit boss");
   };
-  console.log("I am teh state bro", state);
 
   useEffect(() => setDefaults(), [fields]);
 

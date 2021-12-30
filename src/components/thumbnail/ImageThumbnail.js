@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 function ImageThumbnail({ onClick, imageSource, src, style = {}, className }) {
   const [showImage, setShowImage] = useState(false);
-  const [src, setSrc] = useState(null);
+  const [source, setSrc] = useState(null);
   const noSelectionStyle = !onClick
     ? { boxShadow: "0 0 0", borderColor: "white" }
     : {};
@@ -34,7 +34,7 @@ function ImageThumbnail({ onClick, imageSource, src, style = {}, className }) {
       {showImage && (
         <img
           onClick={() => onClick && onClick()}
-          src={src}
+          src={source}
           className={`m-thumb-image ${className}`}
           style={{ ...style, ...noSelectionStyle }}
           onError={(e) => (e.target.src = broken)}

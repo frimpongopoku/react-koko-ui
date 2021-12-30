@@ -36,8 +36,12 @@ export default class Dropdown extends Component {
     };
     this.defaultSelector = null;
     this.setDerivedSelectorWidth = this.setDerivedSelectorWidth.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
+  reset() {
+    this.setState({ selected_value: undefined });
+  }
   setDerivedSelectorWidth(el) {
     if (el) this.setState({ selectorWidth: el.getBoundingClientRect().width });
   }
@@ -101,7 +105,7 @@ export default class Dropdown extends Component {
     }
     return selected_value || this.props.placeholder;
   }
-  
+
   showThatItemIsSelected(value) {
     var { selected_value } = this.state;
     if (this.props.multiple) {
@@ -113,6 +117,7 @@ export default class Dropdown extends Component {
   }
   componentDidMount() {
     lowKeyValidation(this.props);
+    if (this.props.onMount) this.props.onMount(this.reset);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -267,6 +272,10 @@ Dropdown.propTypes = {
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   /** Set the default value of the dropdown. "value" & "defaultValue" do the same thing. Use any you are comfortable with  */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  /**
+   * Function that exports a function that resets the component
+   */
+  onMount: PropTypes.func,
 };
 
 Dropdown.defaultProps = {

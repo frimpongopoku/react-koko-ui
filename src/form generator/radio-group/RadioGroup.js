@@ -20,6 +20,11 @@ export default class RadioGroup extends Component {
       selected_item: undefined,
     };
     this.handleOnItemSelected = this.handleOnItemSelected.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  reset() {
+    this.setState({ selected_item: undefined });
   }
 
   handleOnItemSelected(value) {
@@ -33,10 +38,9 @@ export default class RadioGroup extends Component {
     this.setState({ selected_item: value });
     if (onItemSelected) onItemSelected(value);
   }
-  // componentDidMount() {
-  //   const { defaultValue } = this.props;
-  //   if (defaultValue) this.setState({ selected_item: defaultValue });
-  // }
+  componentDidMount() {
+    if (this.props.onMount) this.props.onMount(this.reset);
+  }
 
   static getDerivedStateFromProps(props, state) {
     if (state.selected_item === undefined && props.defaultValue) {
@@ -102,6 +106,10 @@ RadioGroup.propTypes = {
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   groupClassName: PropTypes.string,
   groupStyle: PropTypes.object,
+  /**
+   * Function that exports a function that resets the component
+   */
+  onMount: PropTypes.func
 };
 
 RadioGroup.defaultProps = {

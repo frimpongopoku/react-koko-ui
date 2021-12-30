@@ -87,7 +87,7 @@ export default class ImageSlector extends Component {
    * @param {*} e
    */
   removeImage(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const { onFileSelected } = this.props;
     this.setState({
       selectedFile: null,
@@ -449,7 +449,7 @@ ImageSlector.propTypes = {
   maxHeight: PropTypes.number,
   /** Provides ( data ,reset ) that corresponds to latest changes based on selected image, cropping, and compression whenever any happen. A reset function
    * is added to enable outside components to reset the ImageSelector
-   * @param data 
+   * @param data
    * @param reset
    */
   onFileSelected: PropTypes.func.isRequired,

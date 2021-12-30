@@ -103,9 +103,13 @@ function AutoComplete(props) {
     <div>
       {selected?.length ? (
         <div style={{ padding: 15 }}>
-          {selected?.map((item) => {
+          {selected?.map((item, index) => {
             const label = getLabel(item);
-            return <Chip label={label} close={() => handleSelection(item)} />;
+            return (
+              <div key={index?.toString()} style={{ display: "inline-block" }}>
+                <Chip label={label} close={() => handleSelection(item)} />
+              </div>
+            );
           })}
         </div>
       ) : (
