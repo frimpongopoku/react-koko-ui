@@ -1,0 +1,32 @@
+.accordion-toggle {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.8em;
+  margin-bottom: 10px;
+}
+.active-item{
+    background-color: #ffe5ff ;
+    color: var(--app-theme);  
+    margin-bottom: 0px;
+}
+
+.accordion-toggle h3 {
+  margin: 0;
+}
+.accordion-content {
+   background-color: #fff3ff;
+  padding: 1em;
+}
+
+.accordion-icon{
+    font-size: 1.2rem !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
